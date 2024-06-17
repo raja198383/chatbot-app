@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qa-chatbot-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: qa-chatbot
+  template:
+    metadata:
+      labels:
+        app: qa-chatbot
+    spec:
+      containers:
+      - name: qa-chatbot
+        image: your-docker-username/qa-chatbot:latest
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qa-chatbot-service
+spec:
+  selector:
+    app: qa-chatbot
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
