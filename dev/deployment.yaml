@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: qna-chatbot
-        image: your-docker-username/qa-chatbot:latest
+        image: 490167669940.dkr.ecr.ap-southeast-1.amazonaws.com/my-ecr-repo-op:v4
         ports:
         - containerPort: 5000
 ---
