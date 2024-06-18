@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 
-app = Flask(__name__, static_url_path='', static_folder='static')
+app = Flask(__name__)
 
 # Predefined Q&A pairs
 qa_pairs = {
@@ -21,10 +21,6 @@ def chatbot():
     user_input = request.json.get('message', '').strip().lower()
     response = qa_pairs.get(user_input, "I don't understand that question. Can you please ask something else?")
     return jsonify({'response': response})
-
-@app.route('/')
-def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
